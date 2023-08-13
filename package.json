@@ -1,0 +1,27 @@
+{
+  "name": "iiitg-icard",
+  "version": "1.0.0",
+  "description": "ID Card generator for IIIT-Guwahati",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/rituparna-ui/iiitg-icard.git"
+  },
+  "author": "Rituparna W",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rituparna-ui/iiitg-icard/issues"
+  },
+  "homepage": "https://github.com/rituparna-ui/iiitg-icard#readme",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mongoose": "^7.4.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
