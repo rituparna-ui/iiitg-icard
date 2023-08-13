@@ -15,6 +15,7 @@
     />
   </head>
   <body>
+    <%- include('../partials/footer') %>
     <div class="container">
       <div class="mt-3">
         <% if(errors.length>0){ %>
@@ -30,13 +31,13 @@
         <div class="row">
           <div class="col-md-12 mt-5">
             <a
-              class="btn btn-lg btn-google btn-block btn-outline"
+              class="btn btn-lg btn-google btn-block btn-outline btn-outline-dark"
               href="https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&response_type=code&client_id=533727701745-2jjh670jk35qsbb6rmarrfla0gn5gh35.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fgoogle"
             >
               <img
                 src="https://img.icons8.com/color/16/000000/google-logo.png"
               />
-              Signin With Google
+              Sign in With Google
             </a>
           </div>
         </div>

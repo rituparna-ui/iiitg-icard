@@ -8,7 +8,8 @@ module.exports = () => {
       if (!token) {
         return res.redirect('auth/login');
       }
-      jwt.verify(token, JWT_SECRET);
+      const payload = jwt.verify(token, JWT_SECRET);
+      req.email = payload.email;
       next();
     } catch (error) {
       return res.redirect('auth/login');
