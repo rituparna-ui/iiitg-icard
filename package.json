@@ -17,11 +17,15 @@
   },
   "homepage": "https://github.com/rituparna-ui/iiitg-icard#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.6",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.4.3"
   },
   "devDependencies": {
+    "googleapis": "^124.0.0",
     "nodemon": "^3.0.1"
   }
 }
