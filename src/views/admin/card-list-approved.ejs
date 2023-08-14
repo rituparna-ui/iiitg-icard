@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Approved <%= degreeFormatted %> 20<%= year %></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+</head>
+
+<body>
+  <%- include('./../partials/footer') %>
+
+  <div class="container mt-2">
+    <%- include('./partials/header') %>
+    <br />
+    <br>
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Roll No.</th>
+          <th scope="col">Email</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(let i=0; i<approved.length; i++){ %>
+        <tr>
+          <th scope="row"><%= approved[i].roll %></th>
+          <td><%= approved[i].email %></td>
+          <td>
+            <form action="/admin/view-card" method="post">
+              <input type="hidden" name="email" value="<%= approved[i].email %>">
+              <button class="btn btn-warning" type="submit">View</button>
+            </form>
+          </td>
+          <td>
+            <form action="/admin/download-zip" method="post">
+              <input type="hidden" name="email" value="<%= approved[i].email %>">
+              <button class="btn btn-warning" type="submit">&downarrow; Zip</button>
+            </form>
+          </td>
+          <td>
+            <form action="/admin/delete" method="post">
+              <input type="hidden" name="email" value="<%= approved[i].email %>">
+              <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+
+</html>
