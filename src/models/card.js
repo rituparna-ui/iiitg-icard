@@ -28,17 +28,27 @@ const cardSchema = new mongoose.Schema({
   programme: {
     type: String,
     required: true,
-    enum: ['B.Tech (CSE)', 'B.Tech (ECE)', 'M.Tech (CSE)', 'M.Tech (ECE)'],
+    enum: [
+      'B.Tech (CSE)',
+      'B.Tech (ECE)',
+      'M.Tech (CSE)',
+      'M.Tech (ECE)',
+      'PhD. (CSE)',
+      'PhD. (ECE)',
+      'PhD. (HSS)',
+      'PhD. (Maths)',
+    ],
+  },
+  mode: {
+    type: String,
+    required: true,
+    enum: ['on-campus', 'online', 'full-time', 'part-time', 'N/A'],
   },
   roll: {
     type: String,
     required: true,
   },
   dateOfBirth: {
-    type: dateSchema,
-    required: true,
-  },
-  validUpto: {
     type: dateSchema,
     required: true,
   },
