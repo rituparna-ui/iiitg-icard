@@ -79,6 +79,8 @@ exports.postSubmitCard = asyncHandler(async (req, res, next) => {
     email: req.email,
     permenantAddress,
     presentAddress,
+    admissionYear: +roll.substring(0, 2),
+    type: +roll.substring(3, 4),
   });
 
   console.log(card);

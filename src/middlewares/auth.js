@@ -6,13 +6,13 @@ module.exports = () => {
     try {
       const { token } = req.cookies;
       if (!token) {
-        return res.redirect('auth/login');
+        return res.redirect('/auth/login');
       }
       const payload = jwt.verify(token, JWT_SECRET);
       req.email = payload.email;
       next();
     } catch (error) {
-      return res.redirect('auth/login');
+      return res.redirect('/auth/login');
     }
   };
 };

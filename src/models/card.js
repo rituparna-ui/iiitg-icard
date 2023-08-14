@@ -83,6 +83,20 @@ const cardSchema = new mongoose.Schema({
     index: true,
     required: true,
   },
+  admissionYear: {
+    type: Number,
+    required: true,
+  },
+  type: {
+    type: Number,
+    required: true,
+    enum: [1, 2, 3],
+  },
+  approved: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model('Card', cardSchema);

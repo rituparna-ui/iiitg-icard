@@ -12,7 +12,14 @@ const {
   postDeleteAdmin,
   getUpdatePassword,
   postNewAdmin,
-} = require('../controllers/admin');
+} = require('../controllers/admin/admin');
+const {
+  getBtechEntries,
+  getMtechOncampusEntries,
+  getMtechOnlineEntries,
+  getPhdFullTimeEntries,
+  getPhdPartTimeEntries,
+} = require('../controllers/admin/entries');
 
 const router = express.Router();
 
@@ -27,5 +34,19 @@ router.get('/manage-admins', authMiddleware(), getManageAdmins);
 router.post('/delete-admin', authMiddleware(), postDeleteAdmin);
 router.post('/update-password', authMiddleware(), getUpdatePassword);
 router.post('/new-admin', authMiddleware(), postNewAdmin);
+
+router.get('/entries/btech', authMiddleware(), getBtechEntries);
+
+router.get(
+  '/entries/mtech-oncampus',
+  authMiddleware(),
+  getMtechOncampusEntries
+);
+
+router.get('/entries/mtech-online', authMiddleware(), getMtechOnlineEntries);
+
+router.get('/entries/phd-full-time', authMiddleware(), getPhdFullTimeEntries);
+
+router.get('/entries/phd-part-time', authMiddleware(), getPhdPartTimeEntries);
 
 module.exports = router;

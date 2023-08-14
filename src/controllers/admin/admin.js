@@ -1,8 +1,9 @@
 const asyncHandler = require('express-async-handler');
 const jwt = require('jsonwebtoken');
 
-const Admin = require('./../models/admin');
-const { JWT_SECRET } = require('../utils/constants');
+const Admin = require('../../models/admin');
+const { JWT_SECRET } = require('../../utils/constants');
+const Card = require('../../models/card');
 
 exports.getLogin = asyncHandler(async (req, res, next) => {
   return res.render('admin/login');
@@ -20,8 +21,17 @@ exports.postLogin = asyncHandler(async (req, res, next) => {
 });
 
 exports.getHome = asyncHandler(async (req, res, next) => {
+  const numDegrees = await Promise.all([
+    Card.countDocuments({ type: 1 }),
+    Card.countDocuments({ type: 2, mode: 'on-campus' }),
+    Card.countDocuments({ type: 2, mode: 'online' }),
+    Card.countDocuments({ type: 3, mode: 'full-time' }),
+    Card.countDocuments({ type: 3, mode: 'part-time' }),
+  ]);
+
   res.render('admin/home', {
     email: req.email,
+    numDegrees,
   });
 });
 
