@@ -81,3 +81,13 @@ exports.postNewAdmin = asyncHandler(async (req, res, next) => {
   });
   return res.redirect('/admin/manage-admins');
 });
+
+exports.deleteEntry = asyncHandler(async (req, res, next) => {
+  await Card.deleteOne({ email: req.body.email });
+  return res.redirect('/admin');
+});
+
+exports.approveEntry = asyncHandler(async (req, res, next) => {
+  await Card.updateOne({ email: req.body.email }, { $set: { approved: true } });
+  return res.redirect('/admin');
+});

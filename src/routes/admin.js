@@ -12,6 +12,8 @@ const {
   postDeleteAdmin,
   getUpdatePassword,
   postNewAdmin,
+  deleteEntry,
+  approveEntry,
 } = require('../controllers/admin/admin');
 const {
   getBtechEntries,
@@ -133,5 +135,8 @@ router.get(
   authMiddleware(),
   getPhdPartTimeBatchwisePending
 );
+
+router.post('/delete', authMiddleware(), deleteEntry);
+router.post('/approve', authMiddleware(), approveEntry);
 
 module.exports = router;
