@@ -323,12 +323,12 @@ exports.getMtechOnlineBatchwiseApproved = asyncHandler(
       approved: true,
     });
 
-    res.render('admin/batchwise', {
+    res.render('admin/card-list-approved', {
       year,
       degreeFormatted: 'M.Tech On-Campus',
       email: req.email,
       degree: 'mtech-online',
-      pending,
+      approved,
     });
   }
 );
@@ -343,7 +343,7 @@ exports.getMtechOnlineBatchwisePending = asyncHandler(
       approved: false,
     });
 
-    res.render('admin/batchwise', {
+    res.render('admin/card-list-pending', {
       year,
       degreeFormatted: 'M.Tech On-Campus',
       email: req.email,
@@ -363,7 +363,7 @@ exports.getPhdFullTimeBatchwiseApproved = asyncHandler(
       approved: true,
     });
 
-    res.render('admin/batchwise', {
+    res.render('admin/card-list-approved', {
       year,
       degreeFormatted: 'Phd. Full Time',
       email: req.email,
@@ -383,7 +383,7 @@ exports.getPhdFullTimeBatchwisePending = asyncHandler(
       approved: false,
     });
 
-    res.render('admin/batchwise', {
+    res.render('admin/card-list-pending', {
       year,
       degreeFormatted: 'Phd. Full Time',
       email: req.email,
@@ -403,7 +403,7 @@ exports.getPhdPartTimeBatchwiseApproved = asyncHandler(
       approved: true,
     });
 
-    res.render('admin/batchwise', {
+    res.render('admin/card-list-approved', {
       year,
       degreeFormatted: 'Phd. Part Time',
       email: req.email,
@@ -423,7 +423,7 @@ exports.getPhdPartTimeBatchwisePending = asyncHandler(
       approved: false,
     });
 
-    res.render('admin/batchwise', {
+    res.render('admin/card-list-pending', {
       year,
       degreeFormatted: 'Phd. Part Time',
       email: req.email,
