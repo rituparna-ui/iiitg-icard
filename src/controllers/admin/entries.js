@@ -20,7 +20,6 @@ exports.getBtechEntries = asyncHandler(async (req, res, next) => {
     data,
   });
 });
-
 exports.getMtechOncampusEntries = asyncHandler(async (req, res, next) => {
   const years = await Card.distinct('admissionYear', {
     type: 2,
@@ -43,7 +42,6 @@ exports.getMtechOncampusEntries = asyncHandler(async (req, res, next) => {
     data,
   });
 });
-
 exports.getMtechOnlineEntries = asyncHandler(async (req, res, next) => {
   const years = await Card.distinct('admissionYear', {
     type: 2,
@@ -66,7 +64,6 @@ exports.getMtechOnlineEntries = asyncHandler(async (req, res, next) => {
     data,
   });
 });
-
 exports.getPhdFullTimeEntries = asyncHandler(async (req, res, next) => {
   const years = await Card.distinct('admissionYear', {
     type: 3,
@@ -89,7 +86,6 @@ exports.getPhdFullTimeEntries = asyncHandler(async (req, res, next) => {
     data,
   });
 });
-
 exports.getPhdPartTimeEntries = asyncHandler(async (req, res, next) => {
   const years = await Card.distinct('admissionYear', {
     type: 3,
@@ -137,7 +133,6 @@ exports.getBtechBatchwise = asyncHandler(async (req, res, next) => {
     pending,
   });
 });
-
 exports.getMtechOncampusBatchwise = asyncHandler(async (req, res, next) => {
   const { year } = req.params;
 
@@ -164,7 +159,6 @@ exports.getMtechOncampusBatchwise = asyncHandler(async (req, res, next) => {
     pending,
   });
 });
-
 exports.getMtechOnlineBatchwise = asyncHandler(async (req, res, next) => {
   const { year } = req.params;
 
@@ -191,7 +185,6 @@ exports.getMtechOnlineBatchwise = asyncHandler(async (req, res, next) => {
     pending,
   });
 });
-
 exports.getPhdFullTimeBatchwise = asyncHandler(async (req, res, next) => {
   const { year } = req.params;
 
@@ -218,7 +211,6 @@ exports.getPhdFullTimeBatchwise = asyncHandler(async (req, res, next) => {
     pending,
   });
 });
-
 exports.getPhdPartTimeBatchwise = asyncHandler(async (req, res, next) => {
   const { year } = req.params;
 
@@ -245,3 +237,198 @@ exports.getPhdPartTimeBatchwise = asyncHandler(async (req, res, next) => {
     pending,
   });
 });
+
+exports.getBtechBatchwiseApproved = asyncHandler(async (req, res, next) => {
+  const { year } = req.params;
+
+  const approved = await Card.find({
+    type: 1,
+    admissionYear: year,
+    approved: true,
+  });
+
+  res.render('admin/card-list-approved', {
+    year,
+    degreeFormatted: 'B.Tech',
+    degree: 'btech',
+    email: req.email,
+    approved,
+  });
+});
+exports.getBtechBatchwisePending = asyncHandler(async (req, res, next) => {
+  const { year } = req.params;
+
+  const pending = await Card.find({
+    type: 1,
+    admissionYear: year,
+    approved: false,
+  });
+
+  res.render('admin/card-list-pending', {
+    year,
+    degreeFormatted: 'B.Tech',
+    degree: 'btech',
+    email: req.email,
+    pending,
+  });
+});
+exports.getMtechOncampusBatchwiseApproved = asyncHandler(
+  async (req, res, next) => {
+    const { year } = req.params;
+
+    const approved = await Card.find({
+      type: 2,
+      admissionYear: year,
+      mode: 'on-campus',
+      approved: true,
+    });
+
+    res.render('admin/card-list-approved', {
+      year,
+      degreeFormatted: 'M.Tech On-Campus',
+      email: req.email,
+      degree: 'mtech-oncampus',
+      approved,
+    });
+  }
+);
+exports.getMtechOncampusBatchwisePending = asyncHandler(
+  async (req, res, next) => {
+    const { year } = req.params;
+
+    const pending = await Card.find({
+      type: 2,
+      admissionYear: year,
+      mode: 'on-campus',
+      approved: false,
+    });
+
+    res.render('admin/card-list-pending', {
+      year,
+      degreeFormatted: 'M.Tech On-Campus',
+      email: req.email,
+      degree: 'mtech-oncampus',
+      pending,
+    });
+  }
+);
+exports.getMtechOnlineBatchwiseApproved = asyncHandler(
+  async (req, res, next) => {
+    const { year } = req.params;
+
+    const approved = await Card.find({
+      type: 2,
+      admissionYear: year,
+      mode: 'online',
+      approved: true,
+    });
+
+    res.render('admin/batchwise', {
+      year,
+      degreeFormatted: 'M.Tech On-Campus',
+      email: req.email,
+      degree: 'mtech-online',
+      pending,
+    });
+  }
+);
+exports.getMtechOnlineBatchwisePending = asyncHandler(
+  async (req, res, next) => {
+    const { year } = req.params;
+
+    const pending = await Card.find({
+      type: 2,
+      admissionYear: year,
+      mode: 'online',
+      approved: false,
+    });
+
+    res.render('admin/batchwise', {
+      year,
+      degreeFormatted: 'M.Tech On-Campus',
+      email: req.email,
+      degree: 'mtech-online',
+      pending,
+    });
+  }
+);
+exports.getPhdFullTimeBatchwiseApproved = asyncHandler(
+  async (req, res, next) => {
+    const { year } = req.params;
+
+    const approved = await Card.find({
+      type: 3,
+      admissionYear: year,
+      mode: 'full-time',
+      approved: true,
+    });
+
+    res.render('admin/batchwise', {
+      year,
+      degreeFormatted: 'Phd. Full Time',
+      email: req.email,
+      degree: 'phd-full-time',
+      approved,
+    });
+  }
+);
+exports.getPhdFullTimeBatchwisePending = asyncHandler(
+  async (req, res, next) => {
+    const { year } = req.params;
+
+    const pending = await Card.find({
+      type: 3,
+      admissionYear: year,
+      mode: 'full-time',
+      approved: false,
+    });
+
+    res.render('admin/batchwise', {
+      year,
+      degreeFormatted: 'Phd. Full Time',
+      email: req.email,
+      degree: 'phd-full-time',
+      pending,
+    });
+  }
+);
+exports.getPhdPartTimeBatchwiseApproved = asyncHandler(
+  async (req, res, next) => {
+    const { year } = req.params;
+
+    const approved = await Card.find({
+      type: 3,
+      admissionYear: year,
+      mode: 'part-time',
+      approved: true,
+    });
+
+    res.render('admin/batchwise', {
+      year,
+      degreeFormatted: 'Phd. Part Time',
+      email: req.email,
+      degree: 'phd-part-time',
+      approved,
+    });
+  }
+);
+exports.getPhdPartTimeBatchwisePending = asyncHandler(
+  async (req, res, next) => {
+    const { year } = req.params;
+
+    const pending = await Card.find({
+      type: 3,
+      admissionYear: year,
+      mode: 'part-time',
+      approved: false,
+    });
+
+    res.render('admin/batchwise', {
+      year,
+      degreeFormatted: 'Phd. Part Time',
+      email: req.email,
+      degree: 'phd-part-time',
+      pending,
+    });
+  }
+);

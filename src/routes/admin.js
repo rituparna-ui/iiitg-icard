@@ -24,6 +24,16 @@ const {
   getMtechOnlineBatchwise,
   getPhdFullTimeBatchwise,
   getPhdPartTimeBatchwise,
+  getBtechBatchwiseApproved,
+  getBtechBatchwisePending,
+  getMtechOncampusBatchwiseApproved,
+  getMtechOnlineBatchwisePending,
+  getPhdFullTimeBatchwiseApproved,
+  getPhdPartTimeBatchwisePending,
+  getMtechOncampusBatchwisePending,
+  getMtechOnlineBatchwiseApproved,
+  getPhdPartTimeBatchwiseApproved,
+  getPhdFullTimeBatchwisePending,
 } = require('../controllers/admin/entries');
 
 const router = express.Router();
@@ -70,6 +80,58 @@ router.get(
   '/entries/phd-part-time/:year',
   authMiddleware(),
   getPhdPartTimeBatchwise
+);
+
+router.get(
+  '/entries/btech/:year/approved',
+  authMiddleware(),
+  getBtechBatchwiseApproved
+);
+router.get(
+  '/entries/mtech-oncampus/:year/approved',
+  authMiddleware(),
+  getMtechOncampusBatchwiseApproved
+);
+router.get(
+  '/entries/mtech-online/:year/approved',
+  authMiddleware(),
+  getMtechOnlineBatchwiseApproved
+);
+router.get(
+  '/entries/phd-full-time/:year/approved',
+  authMiddleware(),
+  getPhdFullTimeBatchwiseApproved
+);
+router.get(
+  '/entries/phd-part-time/:year/approved',
+  authMiddleware(),
+  getPhdPartTimeBatchwiseApproved
+);
+
+router.get(
+  '/entries/btech/:year/pending',
+  authMiddleware(),
+  getBtechBatchwisePending
+);
+router.get(
+  '/entries/mtech-oncampus/:year/pending',
+  authMiddleware(),
+  getMtechOncampusBatchwisePending
+);
+router.get(
+  '/entries/mtech-online/:year/pending',
+  authMiddleware(),
+  getMtechOnlineBatchwisePending
+);
+router.get(
+  '/entries/phd-full-time/:year/pending',
+  authMiddleware(),
+  getPhdFullTimeBatchwisePending
+);
+router.get(
+  '/entries/phd-part-time/:year/pending',
+  authMiddleware(),
+  getPhdPartTimeBatchwisePending
 );
 
 module.exports = router;
