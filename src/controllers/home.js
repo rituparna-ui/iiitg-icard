@@ -1,4 +1,6 @@
 const asyncHandler = require('express-async-handler');
+const fs = require('fs');
+
 const Card = require('../models/card');
 
 exports.getHome = asyncHandler(async (req, res, next) => {
@@ -9,7 +11,6 @@ exports.getHome = asyncHandler(async (req, res, next) => {
 });
 
 exports.postSubmitCard = asyncHandler(async (req, res, next) => {
-  console.log(req.body);
   const {
     fullName,
     programme,
@@ -30,9 +31,7 @@ exports.postSubmitCard = asyncHandler(async (req, res, next) => {
     presentAddr,
     roll,
   } = req.body;
-
   const fullProgramme = programme.trim() + ' (' + branch.trim() + ')';
-
   const permenantAddress =
     flatNoPermenant +
     ', ' +
@@ -43,7 +42,6 @@ exports.postSubmitCard = asyncHandler(async (req, res, next) => {
     statePermenant +
     '. PIN-' +
     pinPermenant;
-
   let presentAddress = '';
   if (presentAddr === 'boysHostel') {
     presentAddress = "Boys' Hostel, IIIT-Guwahati, Bongora, Guwahati-781015";
@@ -61,6 +59,11 @@ exports.postSubmitCard = asyncHandler(async (req, res, next) => {
       '. PIN-' +
       req.body.pin;
   }
+
+  fs.rmSync('images/' + roll, { recursive: true, force: true });
+  fs.mkdirSync('images/' + roll);
+  fs.writeFileSync('images/' + roll + '/photo.png', req.files[0].buffer);
+  fs.writeFileSync('images/' + roll + '/sign.png', req.files[1].buffer);
 
   const card = await Card.create({
     name: fullName.trim(),
@@ -82,7 +85,5 @@ exports.postSubmitCard = asyncHandler(async (req, res, next) => {
     admissionYear: +roll.substring(0, 2),
     type: +roll.substring(3, 4),
   });
-
-  console.log(card);
   return res.redirect('/');
 });
