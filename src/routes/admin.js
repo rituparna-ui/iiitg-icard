@@ -19,6 +19,11 @@ const {
   getMtechOnlineEntries,
   getPhdFullTimeEntries,
   getPhdPartTimeEntries,
+  getBtechBatchwise,
+  getMtechOncampusBatchwise,
+  getMtechOnlineBatchwise,
+  getPhdFullTimeBatchwise,
+  getPhdPartTimeBatchwise,
 } = require('../controllers/admin/entries');
 
 const router = express.Router();
@@ -36,17 +41,35 @@ router.post('/update-password', authMiddleware(), getUpdatePassword);
 router.post('/new-admin', authMiddleware(), postNewAdmin);
 
 router.get('/entries/btech', authMiddleware(), getBtechEntries);
-
 router.get(
   '/entries/mtech-oncampus',
   authMiddleware(),
   getMtechOncampusEntries
 );
-
 router.get('/entries/mtech-online', authMiddleware(), getMtechOnlineEntries);
-
 router.get('/entries/phd-full-time', authMiddleware(), getPhdFullTimeEntries);
-
 router.get('/entries/phd-part-time', authMiddleware(), getPhdPartTimeEntries);
+
+router.get('/entries/btech/:year', authMiddleware(), getBtechBatchwise);
+router.get(
+  '/entries/mtech-oncampus/:year',
+  authMiddleware(),
+  getMtechOncampusBatchwise
+);
+router.get(
+  '/entries/mtech-online/:year',
+  authMiddleware(),
+  getMtechOnlineBatchwise
+);
+router.get(
+  '/entries/phd-full-time/:year',
+  authMiddleware(),
+  getPhdFullTimeBatchwise
+);
+router.get(
+  '/entries/phd-part-time/:year',
+  authMiddleware(),
+  getPhdPartTimeBatchwise
+);
 
 module.exports = router;

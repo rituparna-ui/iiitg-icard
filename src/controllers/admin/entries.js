@@ -112,3 +112,136 @@ exports.getPhdPartTimeEntries = asyncHandler(async (req, res, next) => {
     data,
   });
 });
+
+exports.getBtechBatchwise = asyncHandler(async (req, res, next) => {
+  const { year } = req.params;
+
+  const approved = await Card.countDocuments({
+    type: 1,
+    admissionYear: year,
+    approved: true,
+  });
+
+  const pending = await Card.countDocuments({
+    type: 1,
+    admissionYear: year,
+    approved: false,
+  });
+
+  res.render('admin/batchwise', {
+    year,
+    degreeFormatted: 'B.Tech',
+    degree: 'btech',
+    email: req.email,
+    approved,
+    pending,
+  });
+});
+
+exports.getMtechOncampusBatchwise = asyncHandler(async (req, res, next) => {
+  const { year } = req.params;
+
+  const approved = await Card.countDocuments({
+    type: 2,
+    admissionYear: year,
+    mode: 'on-campus',
+    approved: true,
+  });
+
+  const pending = await Card.countDocuments({
+    type: 2,
+    admissionYear: year,
+    mode: 'on-campus',
+    approved: false,
+  });
+
+  res.render('admin/batchwise', {
+    year,
+    degreeFormatted: 'M.Tech On-Campus',
+    email: req.email,
+    degree: 'mtech-oncampus',
+    approved,
+    pending,
+  });
+});
+
+exports.getMtechOnlineBatchwise = asyncHandler(async (req, res, next) => {
+  const { year } = req.params;
+
+  const approved = await Card.countDocuments({
+    type: 2,
+    admissionYear: year,
+    mode: 'online',
+    approved: true,
+  });
+
+  const pending = await Card.countDocuments({
+    type: 2,
+    admissionYear: year,
+    mode: 'online',
+    approved: false,
+  });
+
+  res.render('admin/batchwise', {
+    year,
+    degreeFormatted: 'M.Tech On-Campus',
+    email: req.email,
+    degree: 'mtech-online',
+    approved,
+    pending,
+  });
+});
+
+exports.getPhdFullTimeBatchwise = asyncHandler(async (req, res, next) => {
+  const { year } = req.params;
+
+  const approved = await Card.countDocuments({
+    type: 3,
+    admissionYear: year,
+    mode: 'full-time',
+    approved: true,
+  });
+
+  const pending = await Card.countDocuments({
+    type: 3,
+    admissionYear: year,
+    mode: 'full-time',
+    approved: false,
+  });
+
+  res.render('admin/batchwise', {
+    year,
+    degreeFormatted: 'Phd. Full Time',
+    email: req.email,
+    degree: 'phd-full-time',
+    approved,
+    pending,
+  });
+});
+
+exports.getPhdPartTimeBatchwise = asyncHandler(async (req, res, next) => {
+  const { year } = req.params;
+
+  const approved = await Card.countDocuments({
+    type: 3,
+    admissionYear: year,
+    mode: 'part-time',
+    approved: true,
+  });
+
+  const pending = await Card.countDocuments({
+    type: 3,
+    admissionYear: year,
+    mode: 'part-time',
+    approved: false,
+  });
+
+  res.render('admin/batchwise', {
+    year,
+    degreeFormatted: 'Phd. Part Time',
+    email: req.email,
+    degree: 'phd-part-time',
+    approved,
+    pending,
+  });
+});
