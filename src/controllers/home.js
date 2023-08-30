@@ -46,7 +46,7 @@ exports.postSubmitCard = asyncHandler(async (req, res, next) => {
   if (presentAddr === 'boysHostel') {
     presentAddress = "Boys' Hostel, IIIT-Guwahati, Bongora, Guwahati-781015";
   } else if (presentAddr === 'girlsHostel') {
-    presentAddress = "girls' Hostel, IIIT-Guwahati, Bongora, Guwahati-781015";
+    presentAddress = "Girls' Hostel, IIIT-Guwahati, Bongora, Guwahati-781015";
   } else {
     presentAddress =
       req.body.flatNo +
