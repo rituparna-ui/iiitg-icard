@@ -101,9 +101,9 @@ const cardSchema = new mongoose.Schema({
 
 cardSchema.virtual('dob').get(function () {
   return (
-    this.dateOfBirth.day +
+    this.dateOfBirth.day.toLocaleString({}, { minimumIntegerDigits: 2 }) +
     '/' +
-    this.dateOfBirth.month +
+    this.dateOfBirth.month.toLocaleString({}, { minimumIntegerDigits: 2 }) +
     '/' +
     this.dateOfBirth.year
   );
