@@ -10,6 +10,7 @@ module.exports = () => {
       }
       const payload = jwt.verify(token, JWT_SECRET);
       req.email = payload.email;
+      req.role = payload.role ?? 'STUDENT';
       next();
     } catch (error) {
       return res.redirect('/auth/login');

@@ -23,6 +23,7 @@
           <th scope="col"></th>
           <th scope="col"></th>
           <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -39,7 +40,13 @@
           <td>
             <form action="/admin/download-zip" method="post">
               <input type="hidden" name="email" value="<%= approved[i].email %>">
-              <button class="btn btn-warning" type="submit">&downarrow; Zip</button>
+              <button class="btn btn-warning" type="submit">&downarrow; Download</button>
+            </form>
+          </td>
+          <td>
+            <form action="/admin/generate-application-doc" method="post">
+              <input type="hidden" name="email" value="<%= approved[i].email %>">
+              <button class="btn btn-warning" type="submit">&downarrow; Generate Application</button>
             </form>
           </td>
           <td>
