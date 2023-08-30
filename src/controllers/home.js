@@ -62,8 +62,14 @@ exports.postSubmitCard = asyncHandler(async (req, res, next) => {
 
   fs.rmSync('images/' + roll, { recursive: true, force: true });
   fs.mkdirSync('images/' + roll);
-  fs.writeFileSync('images/' + roll + '/photo.png', req.files[0].buffer);
-  fs.writeFileSync('images/' + roll + '/sign.png', req.files[1].buffer);
+  fs.writeFileSync(
+    'images/' + roll + '/' + roll + '_photo.png',
+    req.files[0].buffer
+  );
+  fs.writeFileSync(
+    'images/' + roll + '/' + roll + '_sign.png',
+    req.files[1].buffer
+  );
 
   const card = await Card.create({
     name: fullName.trim(),
