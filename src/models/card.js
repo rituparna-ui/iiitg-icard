@@ -151,4 +151,28 @@ cardSchema.virtual('validity').get(function () {
   return ret;
 });
 
+cardSchema.virtual('emergencyContactFormatted').get(function () {
+  let ret = '+91 ';
+  ret += this.emergencyContact.substring(0, 5) + ' ';
+  ret += this.emergencyContact.substring(5, 10);
+  return ret;
+});
+
+cardSchema.virtual('holdersContactFormatted').get(function () {
+  let ret = '+91 ';
+  ret += this.holdersContact.substring(0, 5) + ' ';
+  ret += this.holdersContact.substring(5, 10);
+  return ret;
+});
+
+cardSchema.virtual('programmeFormatted').get(function () {
+  if (this.mode === 'online') {
+    return this.programme + ' Online';
+  } else if (this.mode === 'part-time') {
+    return this.programme + ' Part Time';
+  } else {
+    return this.programme;
+  }
+});
+
 module.exports = mongoose.model('Card', cardSchema);

@@ -34,9 +34,7 @@
           <td>
             <form action="/admin/view-card" method="post">
               <div>
-                <label for="validUpto">Valid Upto: </label>
                 <input type="hidden" name="email" value="<%= pending[i].email %>">
-                <input type="text" name="validUpto" id="validUpto" required>
               </div>
               <button class="btn btn-warning" type="submit">View</button>
             </form>

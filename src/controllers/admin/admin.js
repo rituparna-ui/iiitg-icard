@@ -97,7 +97,7 @@ exports.viewCard = asyncHandler(async (req, res, next) => {
   return res.render('card-template', {
     roll: user.roll,
     name: user.name,
-    programme: user.programme,
+    programme: user.programmeFormatted,
     dateOfBirth: user.dob,
     validUpto: user.validity,
     issueNo: user.issueNo,
@@ -105,8 +105,8 @@ exports.viewCard = asyncHandler(async (req, res, next) => {
     presentAddr: user.presentAddress,
     guardiansName: user.guardiansName,
     permanentAddr: user.permenantAddress,
-    emergency: user.emergencyContact,
-    holders: user.holdersContact,
+    emergency: user.emergencyContactFormatted,
+    holders: user.holdersContactFormatted,
     email: user.email,
   });
 });
