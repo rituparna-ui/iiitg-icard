@@ -91,3 +91,22 @@ exports.approveEntry = asyncHandler(async (req, res, next) => {
   await Card.updateOne({ email: req.body.email }, { $set: { approved: true } });
   return res.redirect('/admin');
 });
+
+exports.viewCard = asyncHandler(async (req, res, next) => {
+  const user = await Card.findOne({ email: req.body.email });
+  return res.render('card-template', {
+    roll: user.roll,
+    name: user.name,
+    programme: user.programme,
+    dateOfBirth: user.dob,
+    validUpto: req.body.validUpto,
+    issueNo: user.issueNo,
+    blood: user.bloodGroup,
+    presentAddr: user.presentAddress,
+    guardiansName: user.guardiansName,
+    permanentAddr: user.permenantAddress,
+    emergency: user.emergencyContact,
+    holders: user.holdersContact,
+    email: user.email,
+  });
+});

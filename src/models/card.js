@@ -99,4 +99,42 @@ const cardSchema = new mongoose.Schema({
   },
 });
 
+cardSchema.virtual('dob').get(function () {
+  return (
+    this.dateOfBirth.day +
+    '/' +
+    this.dateOfBirth.month +
+    '/' +
+    this.dateOfBirth.year
+  );
+});
+
+cardSchema.virtual('issueNo').get(function () {
+  const roll = this.roll;
+  // 1901xxx UG
+  // 1902xxx PG
+  // 1903xxx RS
+  let ret = '';
+  switch (roll[3]) {
+    case '1':
+      ret += 'UG/';
+      break;
+
+    case '2':
+      ret += 'PG/';
+      break;
+
+    case '3':
+      ret += 'PhD/';
+      break;
+
+    default:
+      break;
+  }
+
+  ret += '20' + roll[0] + roll[1] + '/';
+  ret += roll;
+  return ret;
+});
+
 module.exports = mongoose.model('Card', cardSchema);

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>I-CARD</title>
+    <title><%= roll %>_ID_CARD</title>
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
@@ -23,13 +23,25 @@
       .blood {
         position: absolute;
         top: 2px;
-        right: 12px;
+        right: 18px;
       }
       .barcode-horizontal {
-        transform: rotate(90deg) !important;
+        /* transform: rotate(90deg) !important; */
         position: absolute;
-        bottom: 45px;
-        right: -25px;
+        bottom: 32px;
+        left: 16px;
+      }
+      .qr {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin-right: 50px;
+        margin-bottom: 6px;
+      }
+      .transferable {
+        position: absolute;
+        bottom: 12px;
+        left: 16px;
       }
     </style>
   </head>
@@ -44,30 +56,30 @@
           />
           <div style="display: flex">
             <img
-              src="https://i.imgur.com/B9pnRHM.jpg"
+              src="/images/<%= roll %>/photo.png"
               style="width: 1.5cm; height: 2cm; margin-top: 0.3cm"
             />
             <div style="height: 2cm; margin-top: 0.2cm; margin-left: 0.4cm">
               <table style="font-size: x-small">
                 <tr>
                   <td>Name</td>
-                  <td>: Rituparna Warwatkar Warwatkar</td>
+                  <td>: <%= name %></td>
                 </tr>
                 <tr>
                   <td>Programme</td>
-                  <td>: B.Tech (CSE)</td>
+                  <td>: <%= programme %></td>
                 </tr>
                 <tr>
                   <td>Roll No.</td>
-                  <td>: 2001162</td>
+                  <td>: <%= roll %></td>
                 </tr>
                 <tr>
                   <td>Date of Birth</td>
-                  <td>: 14/10/2001</td>
+                  <td>: <%= dateOfBirth %></td>
                 </tr>
                 <tr>
                   <td>Valid Up to</td>
-                  <td>: 30/06/2024</td>
+                  <td>: <%= validUpto %></td>
                 </tr>
               </table>
             </div>
@@ -80,10 +92,10 @@
             "
           >
             <div
-              style="display: flex; flex-direction: column; margin-top: 0.15cm"
+              style="display: flex; flex-direction: column; margin-top: 0.05cm"
             >
               <img
-                src="https://i.imgur.com/sPORMov.jpg"
+                src="/images/<%= roll %>/sign.png"
                 style="width: 1.5cm; height: 0.5cm"
               />
               <table style="font-size: 8px">
@@ -93,7 +105,7 @@
                 </tr>
                 <tr>
                   <td>Issue No.</td>
-                  <td>: UG/2020/2001162</td>
+                  <td>: <%= issueNo %></td>
                 </tr>
               </table>
             </div>
@@ -102,7 +114,7 @@
                 style="
                   display: flex;
                   flex-direction: column;
-                  margin-top: 0.25cm;
+                  margin-top: 0.15cm;
                 "
               >
                 <img
@@ -130,55 +142,57 @@
             >
               &#129656;
             </span>
-            <span style="font-size: xx-small; font-weight: bold">B+</span>
+            <span style="font-size: xx-small; font-weight: bold"
+              ><%= blood %></span
+            >
           </div>
           <div>
-            <table style="font-size: 8px; margin-top: 0.5cm">
+            <table style="font-size: 8px; margin-top: 0.25cm">
               <tr>
                 <td>Present Address</td>
-                <td>Boys' Hostel, IIIT Guwahati, Bongora, Guwahati:- 781015</td>
+                <td><%= presentAddr %></td>
               </tr>
               <tr>
                 <td>Guardian's Name</td>
-                <td>Rituparna Warwatkar Warwatkar</td>
+                <td><%= guardiansName %></td>
               </tr>
               <tr>
-                <td style="width: 85px">Permenant Address</td>
-                <td>
-                  C/o Salagare Printing Press, Vijay Chowk, Budhwarpeth, Near
-                  Bus Stand, Akkalkot, Dist. Solapur
-                  <br />
-                  PIN:- 413216
-                </td>
+                <td style="width: 85px">Permanent Address</td>
+                <td><%= permanentAddr %></td>
               </tr>
               <tr style="color: red">
                 <td>Emergency Contact No.</td>
-                <td>+91 77985 16764</td>
+                <td><%= emergency %></td>
               </tr>
               <tr>
                 <td>Holder's Contact No.</td>
-                <td>+91 77985 16764</td>
+                <td><%= holders %></td>
               </tr>
               <tr>
                 <td>Email</td>
-                <td>ritu.parna@iiitg.ac.in</td>
+                <td><%= email %></td>
               </tr>
             </table>
           </div>
-          <div>
-            <h6 style="margin-bottom: 0; font-size: xx-small">
+          <div class="transferable">
+            <!-- <h6 style="margin-bottom: 0; font-size: 6px">
               THIS CARD IS NOT TRANSFERABLE
             </h6>
-            <p style="font-size: xx-small; margin-top: 0">
+            <p style="font-size: 6px; margin-top: 0">
               If found please return to Registrar, IIIT Guwahati,
               <br />
               Bongora, Guwahati 781015, Contact No. 9531435223
-            </p>
+            </p> -->
+            <h6 style="margin-bottom: 0; font-size: 6px">
+              THIS CARD IS NOT TRANSFERABLE. If found please return to
+              Registrar, IIIT Guwahati <br />
+              Bongora, Guwahati 781015, Contact No. 9531435223
+            </h6>
           </div>
           <div class="barcode-horizontal">
             <svg
               class="barcode"
-              jsbarcode-value="2001162"
+              jsbarcode-value="<%= roll %>"
               jsbarcode-displayValue="false"
               jsbarcode-margin="0"
               jsbarcode-height="20"

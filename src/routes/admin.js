@@ -14,6 +14,7 @@ const {
   postNewAdmin,
   deleteEntry,
   approveEntry,
+  viewCard,
 } = require('../controllers/admin/admin');
 const {
   getBtechEntries,
@@ -138,5 +139,7 @@ router.get(
 
 router.post('/delete', authMiddleware(), deleteEntry);
 router.post('/approve', authMiddleware(), approveEntry);
+
+router.post('/view-card', authMiddleware(), viewCard);
 
 module.exports = router;

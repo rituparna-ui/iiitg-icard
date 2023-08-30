@@ -1,3 +1,5 @@
+const path = require('path');
+
 const express = require('express');
 const cookieParser = require('cookie-parser');
 
@@ -11,6 +13,7 @@ app.set('views', 'src/views');
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
+app.use('/images', express.static(path.join(path.resolve(), 'images')));
 
 app.use(router);
 

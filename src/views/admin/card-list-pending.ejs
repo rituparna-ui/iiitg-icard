@@ -33,14 +33,18 @@
           <td><%= pending[i].email %></td>
           <td>
             <form action="/admin/view-card" method="post">
-              <input type="hidden" name="email" value="<%= pending[i].email %>">
+              <div>
+                <label for="validUpto">Valid Upto: </label>
+                <input type="hidden" name="email" value="<%= pending[i].email %>">
+                <input type="text" name="validUpto" id="validUpto" required>
+              </div>
               <button class="btn btn-warning" type="submit">View</button>
             </form>
           </td>
           <td>
             <form action="/admin/download-zip" method="post">
               <input type="hidden" name="email" value="<%= pending[i].email %>">
-              <button class="btn btn-warning" type="submit">&downarrow; Zip</button>
+              <button class="btn btn-warning" type="submit">&downarrow; Download</button>
             </form>
           </td>
           <td>

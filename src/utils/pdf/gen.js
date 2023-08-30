@@ -4,7 +4,7 @@ const html = fs.readFileSync('template.html', 'utf8');
 
 const options = {
   format: 'A4',
-  orientation: 'portrait',
+  orientation: 'landscape',
 };
 
 var document = {
