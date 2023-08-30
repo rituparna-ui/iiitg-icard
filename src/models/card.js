@@ -137,4 +137,18 @@ cardSchema.virtual('issueNo').get(function () {
   return ret;
 });
 
+cardSchema.virtual('validity').get(function () {
+  let ret = '30/06/';
+
+  if (this.programme.startsWith('B')) {
+    ret += this.admissionYear + 4 + 2000;
+  } else if (this.programme.startsWith('M')) {
+    ret += this.admissionYear + 2 + 2000;
+  } else if (this.programme.startsWith('P')) {
+    ret += this.admissionYear + 8 + 2000;
+  }
+
+  return ret;
+});
+
 module.exports = mongoose.model('Card', cardSchema);

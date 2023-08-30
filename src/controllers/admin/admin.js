@@ -99,7 +99,7 @@ exports.viewCard = asyncHandler(async (req, res, next) => {
     name: user.name,
     programme: user.programme,
     dateOfBirth: user.dob,
-    validUpto: req.body.validUpto,
+    validUpto: user.validity,
     issueNo: user.issueNo,
     blood: user.bloodGroup,
     presentAddr: user.presentAddress,
