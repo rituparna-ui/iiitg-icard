@@ -17,6 +17,8 @@ const {
   approveEntry,
   viewCard,
   generateApplication,
+  addIcard,
+  submitCardManual,
 } = require('../controllers/admin/admin');
 const {
   getBtechEntries,
@@ -40,6 +42,7 @@ const {
   getPhdPartTimeBatchwiseApproved,
   getPhdFullTimeBatchwisePending,
 } = require('../controllers/admin/entries');
+const multer = require('multer');
 
 const router = express.Router();
 
@@ -199,6 +202,15 @@ router.post(
   authMiddleware(),
   adminMiddleware(),
   generateApplication
+);
+
+router.get('/add-icard', authMiddleware(), adminMiddleware(), addIcard);
+router.post(
+  '/submit-card-manual',
+  authMiddleware(),
+  adminMiddleware(),
+  multer().any(),
+  submitCardManual
 );
 
 module.exports = router;
