@@ -19,6 +19,7 @@ const {
   generateApplication,
   addIcard,
   submitCardManual,
+  downloadZip,
 } = require('../controllers/admin/admin');
 const {
   getBtechEntries,
@@ -212,5 +213,7 @@ router.post(
   multer().any(),
   submitCardManual
 );
+
+router.post('/download-zip', authMiddleware(), adminMiddleware(), downloadZip);
 
 module.exports = router;

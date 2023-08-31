@@ -1,6 +1,8 @@
 const asyncHandler = require('express-async-handler');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
+const zip = require('express-zip');
+const path = require('path');
 
 const Admin = require('../../models/admin');
 const { JWT_SECRET } = require('../../utils/constants');
@@ -225,4 +227,22 @@ exports.submitCardManual = asyncHandler(async (req, res, next) => {
     type: +roll.substring(3, 4),
   });
   return res.redirect('/admin');
+});
+
+exports.downloadZip = asyncHandler(async (req, res, next) => {
+  const user = await Card.findOne({ email: req.body.email });
+  const rollDir = path.join(__dirname, '..', '..', '..', 'images', user.roll);
+  return res.zip(
+    [
+      {
+        path: path.join(rollDir, `${user.roll}_photo.png`),
+        name: `${user.roll}_photo.png`,
+      },
+      {
+        path: path.join(rollDir, `${user.roll}_sign.png`),
+        name: `${user.roll}_sign.png`,
+      },
+    ],
+    user.roll + '.zip'
+  );
 });
