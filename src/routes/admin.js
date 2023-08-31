@@ -16,6 +16,7 @@ const {
   deleteEntry,
   approveEntry,
   viewCard,
+  generateApplication,
 } = require('../controllers/admin/admin');
 const {
   getBtechEntries,
@@ -192,5 +193,12 @@ router.post('/delete', authMiddleware(), adminMiddleware(), deleteEntry);
 router.post('/approve', authMiddleware(), adminMiddleware(), approveEntry);
 
 router.post('/view-card', authMiddleware(), adminMiddleware(), viewCard);
+
+router.post(
+  '/generate-application',
+  authMiddleware(),
+  adminMiddleware(),
+  generateApplication
+);
 
 module.exports = router;

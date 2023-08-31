@@ -110,3 +110,23 @@ exports.viewCard = asyncHandler(async (req, res, next) => {
     email: user.email,
   });
 });
+
+exports.generateApplication = asyncHandler(async (req, res, next) => {
+  const user = await Card.findOne({ email: req.body.email });
+  return res.render('admin/application-template', {
+    roll: user.roll,
+    name: user.name.toUpperCase(),
+    programme: user.programme,
+    mode: user.mode,
+    dob: user.dob,
+    blood: user.bloodGroup,
+    presentAddr: user.presentAddress,
+    guardian: user.guardiansName,
+    permaAddr: user.permenantAddress,
+    emergency: user.emergencyContactFormatted,
+    holder: user.holdersContactFormatted,
+    email: user.email,
+    validity: user.validity,
+    issue: user.issueNo,
+  });
+});
