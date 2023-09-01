@@ -240,16 +240,35 @@
               <div class="form-group">
                 <label for="permenantFullAddress">Permenant Address</label>
                 <br>
-                <label for="flatNoPermenant">Flat/House No.</label>
-                <input type="text" name="flatNoPermenant" id="flatNoPermenant" class="form-control" required>
-                <label for="locality">Locality</label>
-                <input type="text" name="localityPermenant" id="localityPermenant" class="form-control" required>
-                <label for="cityPermenant">City</label>
-                <input type="text" name="cityPermenant" id="cityPermenant" class="form-control" required>
-                <label for="statePermenant">State</label>
-                <input type="text" name="statePermenant" id="statePermenant" class="form-control" required>
-                <label for="pinPermenant">PINCODE</label>
-                <input type="text" name="pinPermenant" id="pinPermenant" class="form-control" required>
+                <div class="d-flex justify-content-between">
+                  <label for="flatNoPermenant">Flat/House No.</label>
+                  <small class="form-text text-muted" id="flatNoPermenantLength">(0/10)</small>
+                </div>
+                <input type="text" name="flatNoPermenant" id="flatNoPermenant" class="form-control" required maxlength="10">
+
+                <div class="d-flex justify-content-between">
+                  <label for="localityPermenant">Locality</label>
+                  <small class="form-text text-muted" id="localityPermenantLength">(0/90)</small>
+                </div>
+                <input type="text" name="localityPermenant" maxlength="90" id="localityPermenant" class="form-control" required>
+
+                <div class="d-flex justify-content-between">
+                  <label for="cityPermenant">City</label>
+                  <small class="form-text text-muted" id="cityPermenantLength">(0/20)</small>
+                </div>
+                <input type="text" name="cityPermenant" id="cityPermenant" maxlength="20" class="form-control" required>
+
+                <div class="d-flex justify-content-between">
+                  <label for="statePermenant">State</label>
+                  <small class="form-text text-muted" id="statePermenantLength">(0/15)</small>
+                </div>
+                <input type="text" name="statePermenant" id="statePermenant" maxlength="15" class="form-control" required>
+
+                <div class="d-flex justify-content-between">
+                  <label for="pinPermenant">PINCODE</label>
+                  <small class="form-text text-muted" id="pinPermenantLength">(0/6)</small>
+                </div>
+                <input type="text" name="pinPermenant" id="pinPermenant" maxlength="6" class="form-control" required>
               </div>
             </div>
           </div>
@@ -336,6 +355,42 @@
           default:
             break;
         }
+      })
+
+
+      const flatNoPermenantLengthSmall = document.getElementById('flatNoPermenantLength')
+      const flatNoPermenant = document.getElementById('flatNoPermenant')
+      flatNoPermenant.addEventListener('input', () => {
+        const x = flatNoPermenant.value.length
+        flatNoPermenantLengthSmall.innerText = `(${x}/10)`
+      })
+
+      const localityPermenantLengthSmall = document.getElementById('localityPermenantLength')
+      const localityPermenant = document.getElementById('localityPermenant')
+      localityPermenant.addEventListener('input', () => {
+        const x = localityPermenant.value.length
+        localityPermenantLengthSmall.innerText = `(${x}/90)`
+      })
+
+      const cityPermenantLengthSmall = document.getElementById('cityPermenantLength')
+      const cityPermenant = document.getElementById('cityPermenant')
+      cityPermenant.addEventListener('input', () => {
+        const x = cityPermenant.value.length
+        cityPermenantLengthSmall.innerText = `(${x}/20)`
+      })
+
+      const statePermenantLengthSmall = document.getElementById('statePermenantLength')
+      const statePermenant = document.getElementById('statePermenant')
+      statePermenant.addEventListener('input', () => {
+        const x = statePermenant.value.length
+        statePermenantLengthSmall.innerText = `(${x}/15)`
+      })
+
+      const pinPermenantLengthSmall = document.getElementById('pinPermenantLength')
+      const pinPermenant = document.getElementById('pinPermenant')
+      pinPermenant.addEventListener('input', () => {
+        const x = pinPermenant.value.length
+        pinPermenantLengthSmall.innerText = `(${x}/6)`
       })
     </script>
 </body>
