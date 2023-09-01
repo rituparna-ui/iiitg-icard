@@ -2,6 +2,7 @@ const path = require('path');
 
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const zip = require('express-easy-zip');
 
 const router = require('./router');
 const Admin = require('./models/admin');
@@ -14,6 +15,7 @@ app.set('views', 'src/views');
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use('/images', express.static(path.join(path.resolve(), 'images')));
+app.use(zip())
 
 app.use(router);
 

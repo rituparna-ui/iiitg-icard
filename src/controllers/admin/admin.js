@@ -1,7 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
-const zip = require('express-zip');
 const path = require('path');
 
 const Admin = require('../../models/admin');
@@ -232,8 +231,8 @@ exports.submitCardManual = asyncHandler(async (req, res, next) => {
 exports.downloadZip = asyncHandler(async (req, res, next) => {
   const user = await Card.findOne({ email: req.body.email });
   const rollDir = path.join(__dirname, '..', '..', '..', 'images', user.roll);
-  return res.zip(
-    [
+  return res.zip({
+    files: [
       {
         path: path.join(rollDir, `${user.roll}_photo.png`),
         name: `${user.roll}_photo.png`,
@@ -243,8 +242,21 @@ exports.downloadZip = asyncHandler(async (req, res, next) => {
         name: `${user.roll}_sign.png`,
       },
     ],
-    user.roll + '.zip'
-  );
+    filename: user.roll + '.zip',
+  });
 });
 
-exports.exportData = asyncHandler(async (req, res, next) => {});
+exports.exportData = asyncHandler(async (req, res, next) => {
+  const images = path.join(__dirname, '..', '..', '..', 'images');
+  const allCards = await Card.find().lean();
+  const data = JSON.stringify(allCards);
+  fs.writeFileSync('backup.json', data);
+  const backupPath = path.join(__dirname, '..', '..', '..', 'backup.json');
+  return res.zip({
+    files: [
+      { path: images, name: 'images' },
+      { path: backupPath, name: 'backup,json' },
+    ],
+    filename: 'icard-backup.zip',
+  });
+});

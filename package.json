@@ -21,7 +21,7 @@
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
-    "express-zip": "^3.0.0",
+    "express-easy-zip": "^1.1.5",
     "googleapis": "^124.0.0",
     "jsbarcode": "^3.11.5",
     "jsonwebtoken": "^9.0.1",
@@ -33,5 +33,10 @@
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",
     "nodemon": "^3.0.1"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "backup.json"
+    ]
   }
 }
