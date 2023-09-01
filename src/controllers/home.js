@@ -1,5 +1,7 @@
 const asyncHandler = require('express-async-handler');
 const fs = require('fs');
+const sharp = require('sharp');
+const { Rembg } = require('rembg-node');
 
 const Card = require('../models/card');
 
@@ -67,9 +69,16 @@ exports.postSubmitCard = asyncHandler(async (req, res, next) => {
     req.files[0].buffer
   );
   fs.writeFileSync(
-    'images/' + roll + '/' + roll + '_sign.png',
+    'images/' + roll + '/' + roll + '_sign_org.png',
     req.files[1].buffer
   );
+
+  const input = sharp('images/' + roll + '/' + roll + '_sign_org.png');
+  const rembg = new Rembg({
+    logging: true,
+  });
+  const output = await rembg.remove(input);
+  await output.png().toFile('images/' + roll + '/' + roll + '_sign.png');
 
   const card = await Card.create({
     name: fullName.trim(),
