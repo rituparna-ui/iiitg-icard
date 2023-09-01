@@ -246,3 +246,5 @@ exports.downloadZip = asyncHandler(async (req, res, next) => {
     user.roll + '.zip'
   );
 });
+
+exports.exportData = asyncHandler(async (req, res, next) => {});

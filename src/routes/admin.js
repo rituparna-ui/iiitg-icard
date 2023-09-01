@@ -20,6 +20,7 @@ const {
   addIcard,
   submitCardManual,
   downloadZip,
+  exportData,
 } = require('../controllers/admin/admin');
 const {
   getBtechEntries,
@@ -215,5 +216,7 @@ router.post(
 );
 
 router.post('/download-zip', authMiddleware(), adminMiddleware(), downloadZip);
+
+router.post('/export', authMiddleware(), adminMiddleware(), exportData);
 
 module.exports = router;
