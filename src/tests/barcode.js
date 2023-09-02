@@ -11,6 +11,3 @@ JsBarcode(canvas, '2001162', {
   background: 'white',
 });
 
-canvas.toDataURL('image/png', (err, png) => {
-  console.log(png);
-});

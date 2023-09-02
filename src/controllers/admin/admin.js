@@ -52,7 +52,6 @@ exports.getManageAdmins = asyncHandler(async (req, res, next) => {
 });
 
 exports.postNewPassword = asyncHandler(async (req, res, next) => {
-  console.log(req.body);
   const { email, password } = req.body;
   await Admin.updateOne({ email }, { $set: { password } });
   return res.redirect('/admin');
