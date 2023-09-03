@@ -1,5 +1,5 @@
 # IIIT Guwahati I-Card Management 
-[![Deployed - IIIT-G Intranet](https://img.shields.io/badge/Deployed-IIITG%20Intranet-blue?style=for-the-badge)]( "#" '')
+[![Deployed - IIIT-G Intranet](https://img.shields.io/badge/Deployed-IIITG%20Intranet-blue?style=for-the-badge)]( # '')
 
 An I-card generator and management application built using Node.js and MongoDB for the Indian Institute of Information Technology Guwahati (IIIT Guwahati). This application allows institute students to log in using their institute email IDs and fill out a form with the necessary details required for their institute ID cards. Once a student submits the form, administrators or authorized personnel can review the I-card requests, view the generated ID cards, and either approve or reject them.
 
